@@ -9,7 +9,7 @@ const Sidebar: React.FC = () => {
         <ul>
           <li>
             <NavLink to="/" end>
-              Registration
+              KYC Registration
             </NavLink>
           </li>
         </ul>
