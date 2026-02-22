@@ -11,46 +11,46 @@ const UserKycRegistrationForm = () => {
 
   return (
     <div className="form-container">
-      <h2>KYC Registration</h2>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid">
           <input
-            {...register("firstName", { required: true })}
+            {...register("firstName", { required: "First name is required" })}
             placeholder="First Name"
           />
           <input
-            {...register("lastName", { required: true })}
+            {...register("lastName", { required: "Last name is required" })}
             placeholder="Last Name"
           />
-
           <input
-            {...register("loginId", { required: true })}
+            {...register("loginId", { required: "Login ID is required" })}
             placeholder="Login ID"
           />
           <input type="date" {...register("dob")} />
 
           <input
             type="email"
-            {...register("email", { required: true })}
+            {...register("email", { required: "Email is required" })}
             placeholder="Email"
           />
 
           <input
             type="password"
-            {...register("password", { required: true, minLength: 6 })}
+            {...register("password", {
+              required: "Password is required",
+              minLength: 6,
+            })}
             placeholder="Password"
           />
 
           <input
             {...register("mobile", {
-              required: true,
+              required: "Mobile number is required",
               pattern: /^[0-9]{10}$/,
             })}
             placeholder="Mobile"
           />
 
-          <select {...register("gender", { required: true })}>
+          <select {...register("gender", { required: "Gender is required" })}>
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
