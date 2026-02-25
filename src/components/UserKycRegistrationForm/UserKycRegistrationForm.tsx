@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import type { UserFormData } from "./UserKycRegistrationForm.types";
 import "../../styles/UserKycRegistrationForm.scss";
 
@@ -11,6 +12,7 @@ const UserKycRegistrationForm = () => {
 
   const onSubmit = (data: UserFormData) => {
     console.log("Form Data:", data);
+    toast.success("Registration submitted successfully");
   };
 
   return (

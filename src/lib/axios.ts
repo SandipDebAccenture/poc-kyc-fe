@@ -8,18 +8,17 @@ export const apiClient = axios.create({
   timeout: 10000,
 });
 
-// Optional: Interceptors
+// Request Interceptors
 apiClient.interceptors.request.use((config) => {
-  // attach token if needed
-  // const token = localStorage.getItem("token");
-  // if (token) config.headers.Authorization = `Bearer ${token}`;
+  const auth_token = localStorage.getItem("auth_token");
+  if (auth_token) config.headers.Authorization = `Bearer ${auth_token}`;
   return config;
 });
 
+// Response Interceptors
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // central error handling
     console.error("API Error:", error);
     return Promise.reject(error);
   },

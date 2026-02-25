@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
+import toast from "react-hot-toast";
 import { apiClient } from "../lib/axios";
 import "../styles/AuthPage.scss";
 
@@ -29,23 +30,25 @@ export default function AuthPage() {
           setLoading(false);
           return;
         }
-        await apiClient.post("/auth/signup", {
+        await apiClient.post("auth/register", {
           username: data.username,
           password: data.password,
         });
         setIsSignUp(false);
         reset();
       } else {
-        const res = await apiClient.post("/auth/signin", {
+        const res = await apiClient.post("auth/login", {
           username: data.username,
           password: data.password,
         });
-        if (res.data.token) localStorage.setItem("token", res.data.token);
+        if (res.data.token) localStorage.setItem("auth_token", res.data.token);
         navigate("/");
       }
     } catch (err: unknown) {
       const error = err as AxiosError<{ message: string }>;
-      setError(error.response?.data?.message || "Request failed");
+      toast.error(error.response?.data?.message || "Request failed", {
+        duration: 3000,
+      });
     } finally {
       setLoading(false);
     }
