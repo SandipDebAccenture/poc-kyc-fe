@@ -60,26 +60,33 @@ export default function AuthPage() {
           <input
             type="text"
             placeholder="Username"
+            className={errors.username ? "invalid" : ""}
             {...register("username", { required: true })}
           />
-          {errors.username && <span className="error-msg">Required</span>}
+          {errors.username && (
+            <span className="error-msg">Username Required</span>
+          )}
 
           <input
             type="password"
             placeholder="Password"
+            className={errors.password ? "invalid" : ""}
             {...register("password", { required: true })}
           />
-          {errors.password && <span className="error-msg">Required</span>}
+          {errors.password && (
+            <span className="error-msg">Password Required</span>
+          )}
 
           {isSignUp && (
             <>
               <input
                 type="password"
                 placeholder="Confirm Password"
+                className={errors.confirmPassword ? "invalid" : ""}
                 {...register("confirmPassword", { required: true })}
               />
               {errors.confirmPassword && (
-                <span className="error-msg">Required</span>
+                <span className="error-msg">Confirm Password Required</span>
               )}
             </>
           )}

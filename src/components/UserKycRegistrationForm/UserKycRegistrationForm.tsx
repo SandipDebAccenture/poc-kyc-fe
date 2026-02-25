@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { UserFormData } from "./UserKycRegistrationForm.types";
-import "./UserKycRegistrationForm.scss";
+import "../../styles/UserKycRegistrationForm.scss";
 
 const UserKycRegistrationForm = () => {
   const {

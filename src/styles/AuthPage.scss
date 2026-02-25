@@ -28,20 +28,35 @@
   margin-bottom: 16px;
 }
 
-.auth-card input {
-  padding: 10px;
-  border: 1px solid #ddd;
+.auth-card input,
+.auth-card select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
   border-radius: 4px;
   font-size: 14px;
   font-family: inherit;
-}
+  box-sizing: border-box;
 
-.auth-card input:focus {
-  outline: none;
-  border-color: #333;
+  &:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.08);
+  }
+
+  &.invalid {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.06);
+  }
 }
 
 .error {
+  color: #e53e3e;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.error-card {
   color: #d32f2f;
   font-size: 13px;
   padding: 10px;
@@ -51,7 +66,7 @@
 }
 
 .error-msg {
-  color: #d32f2f;
+  color: #e53e3e;
   font-size: 12px;
   margin-top: -8px;
 }
