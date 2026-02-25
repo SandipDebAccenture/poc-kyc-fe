@@ -13,6 +13,33 @@
   padding: 30px;
   width: 100%;
   max-width: 350px;
+  .auth-title {
+    text-align: center;
+  }
+
+  .auth-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .btn-toggle {
+      padding: 6px 10px;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: underline;
+    }
+  }
 }
 
 .auth-card h1 {

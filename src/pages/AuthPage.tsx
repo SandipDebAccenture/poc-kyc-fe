@@ -60,7 +60,9 @@ export default function AuthPage() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
+        <h1 className="auth-title">
+          {isSignUp ? "Create Account" : "Welcome Back"}
+        </h1>
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -102,15 +104,20 @@ export default function AuthPage() {
           </button>
         </form>
 
-        <button
-          onClick={() => {
-            setIsSignUp(!isSignUp);
-            reset();
-            setError("");
-          }}
-          className="btn-toggle">
-          {isSignUp ? "Back to Sign In" : "Create Account"}
-        </button>
+        <div className="auth-footer">
+          <p>
+            {isSignUp ? "Already have an account?" : "Don't have an account?"}
+          </p>
+          <button
+            onClick={() => {
+              setIsSignUp(!isSignUp);
+              reset();
+              setError("");
+            }}
+            className="btn-toggle">
+            {isSignUp ? "Back to Sign In" : "Create Account"}
+          </button>
+        </div>
       </div>
     </div>
   );
