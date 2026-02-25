@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { verifyKyc, getKycStatus } from "./kyc.api";
-import { QUERY_KEYS } from "../../shared/constants/queryKeys";
+import { QUERY_KEYS } from "../../constants/queryKeys";
 
 export const useVerifyKyc = () => {
   return useMutation({

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createOnboarding, getOnboardingStatus } from "./onboarding.api";
-import { QUERY_KEYS } from "../../shared/constants/queryKeys";
+import { QUERY_KEYS } from "../../constants/queryKeys";
 
 export const useCreateOnboarding = () => {
   return useMutation({

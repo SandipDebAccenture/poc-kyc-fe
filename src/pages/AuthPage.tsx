@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
 import { apiClient } from "../lib/axios";
 import "../styles/AuthPage.scss";
 
@@ -9,7 +10,6 @@ export default function AuthPage() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     reset,
   } = useForm();
@@ -17,6 +17,7 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
     setLoading(true);
     setError("");
@@ -42,8 +43,9 @@ export default function AuthPage() {
         if (res.data.token) localStorage.setItem("token", res.data.token);
         navigate("/");
       }
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Request failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message: string }>;
+      setError(error.response?.data?.message || "Request failed");
     } finally {
       setLoading(false);
     }

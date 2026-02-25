@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Sidebar from "./Sidebar";
-import "./Layout.scss";
+import "../styles/Layout.scss";
 
 const Layout: React.FC = () => {
   return (

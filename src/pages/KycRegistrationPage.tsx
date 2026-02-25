@@ -1,5 +1,5 @@
 import React from "react";
-import UserKycRegistrationForm from "../components/UserKycRegistrationForm";
+import UserKycRegistrationForm from "../components/UserKycRegistrationForm/UserKycRegistrationForm";
 import "../styles/kycRegistrationPage.scss";
 
 const KycRegistrationPage: React.FC = () => {

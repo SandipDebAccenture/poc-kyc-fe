@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
-import "./Layout.scss";
+import "../styles/Layout.scss";
 
 const Sidebar: React.FC = () => {
   return (
