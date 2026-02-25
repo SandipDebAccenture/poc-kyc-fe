@@ -36,6 +36,9 @@ export default function AuthPage() {
         });
         setIsSignUp(false);
         reset();
+        toast.success("Registration successful! Please log in.", {
+          duration: 3000,
+        });
       } else {
         const res = await apiClient.post("auth/login", {
           username: data.username,

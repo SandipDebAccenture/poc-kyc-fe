@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { AxiosError } from "axios";
+import { apiClient } from "../../lib/axios";
 import type { UserFormData } from "./UserKycRegistrationForm.types";
 import "../../styles/UserKycRegistrationForm.scss";
 
@@ -8,11 +11,27 @@ const UserKycRegistrationForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<UserFormData>();
 
-  const onSubmit = (data: UserFormData) => {
-    console.log("Form Data:", data);
-    toast.success("Registration submitted successfully");
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data: UserFormData) => {
+    setLoading(true);
+    try {
+      const res = await apiClient.post("/api/onboarding", data);
+      console.log("Onboarding response:", res); // FIXME: Remove
+      toast.success("Registration submitted successfully");
+      reset();
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+      const msg =
+        error.response?.data?.message || error.message || "Submission failed";
+      toast.error(msg);
+      console.error("Onboarding error:", err); // FIXME: Remove
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -327,7 +346,9 @@ const UserKycRegistrationForm = () => {
         </div>
 
         <div className="submit-button">
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={loading} aria-busy={loading}>
+            {loading ? "Submitting..." : "Submit"}
+          </button>
         </div>
       </form>
     </div>
