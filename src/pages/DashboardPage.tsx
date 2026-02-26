@@ -13,7 +13,7 @@ const statusColors: Record<string, string> = {
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [onboardingStatus, setOnboardingStatus] =
     useState<string>("NOT STARTED");
   const [kycStatus, setKycStatus] = useState<string>("NOT STARTED");
@@ -30,6 +30,7 @@ const Dashboard = () => {
     if (!customerId) return;
 
     const fetchStatus = async () => {
+      setLoading(true);
       try {
         const [onboardingRes, kycRes] = await Promise.all([
           apiClient.get(`/api/onboarding/status/${customerId}`),
@@ -43,6 +44,8 @@ const Dashboard = () => {
           duration: 3000,
         });
         console.error("Status fetch error", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -63,16 +66,24 @@ const Dashboard = () => {
         <div className="dashboard__status">
           <div className="status-item">
             <span>Onboarding Status:</span>
-            <span className={`badge ${statusColors[onboardingStatus]}`}>
-              {onboardingStatus}
-            </span>
+            {loading ? (
+              <span className="loading">Loading...</span>
+            ) : (
+              <span className={`badge ${statusColors[onboardingStatus]}`}>
+                {onboardingStatus}
+              </span>
+            )}
           </div>
 
           <div className="status-item">
             <span>KYC Status:</span>
-            <span className={`badge ${statusColors[kycStatus]}`}>
-              {kycStatus}
-            </span>
+            {loading ? (
+              <span className="loading">Loading...</span>
+            ) : (
+              <span className={`badge ${statusColors[kycStatus]}`}>
+                {kycStatus}
+              </span>
+            )}
           </div>
         </div>
 
