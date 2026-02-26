@@ -10,10 +10,12 @@ $neutral: #999;
 .dashboard {
   min-height: 100dvh;
   background: #f4f4f4;
+  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Inter", sans-serif;
+  margin-bottom: 20px;
 
   &__card {
     width: 420px;

@@ -56,15 +56,17 @@ const UserKycRegistrationPage = () => {
 
   return (
     <div className="form-container">
-      <div className="kyc-card">
-        <h2>KYC Registration</h2>
+      <div>
+        <h2 className="form-title">KYC Registration</h2>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="grid">
           <div className="form-field">
+            <label htmlFor="firstName">First Name</label>
             <input
+              id="firstName"
               {...register("firstName", { required: "First name is required" })}
-              placeholder="First Name"
+              placeholder="Please enter your first name"
               aria-invalid={errors.firstName ? "true" : "false"}
               aria-describedby={
                 errors.firstName ? "firstName-error" : undefined
@@ -79,9 +81,11 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="lastName">Last Name</label>
             <input
+              id="lastName"
               {...register("lastName", { required: "Last name is required" })}
-              placeholder="Last Name"
+              placeholder="Please enter your last name"
               aria-invalid={errors.lastName ? "true" : "false"}
               aria-describedby={errors.lastName ? "lastName-error" : undefined}
               className={errors.lastName ? "invalid" : ""}
@@ -94,9 +98,11 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="loginId">Login ID</label>
             <input
+              id="loginId"
               {...register("loginId", { required: "Login ID is required" })}
-              placeholder="Login ID"
+              placeholder="Please enter your login ID"
               aria-invalid={errors.loginId ? "true" : "false"}
               aria-describedby={errors.loginId ? "loginId-error" : undefined}
               className={errors.loginId ? "invalid" : ""}
@@ -109,9 +115,12 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="dob">Date of Birth</label>
             <input
               type="date"
+              id="dob"
               {...register("dob", { required: "Date of birth is required" })}
+              placeholder="Please enter your date of birth"
               aria-invalid={errors.dob ? "true" : "false"}
               aria-describedby={errors.dob ? "dob-error" : undefined}
               className={errors.dob ? "invalid" : ""}
@@ -124,10 +133,12 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
+              id="email"
               {...register("email", { required: "Email is required" })}
-              placeholder="Email"
+              placeholder="Please enter your email"
               aria-invalid={errors.email ? "true" : "false"}
               aria-describedby={errors.email ? "email-error" : undefined}
               className={errors.email ? "invalid" : ""}
@@ -140,8 +151,10 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
+              id="password"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -149,7 +162,7 @@ const UserKycRegistrationPage = () => {
                   message: "Password must be at least 6 characters",
                 },
               })}
-              placeholder="Password"
+              placeholder="Please enter your password"
               aria-invalid={errors.password ? "true" : "false"}
               aria-describedby={errors.password ? "password-error" : undefined}
               className={errors.password ? "invalid" : ""}
@@ -162,7 +175,9 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="mobile">Mobile</label>
             <input
+              id="mobile"
               {...register("mobile", {
                 required: "Mobile number is required",
                 pattern: {
@@ -170,7 +185,7 @@ const UserKycRegistrationPage = () => {
                   message: "Mobile must be a 10-digit number",
                 },
               })}
-              placeholder="Mobile"
+              placeholder="Please enter your mobile number"
               aria-invalid={errors.mobile ? "true" : "false"}
               aria-describedby={errors.mobile ? "mobile-error" : undefined}
               className={errors.mobile ? "invalid" : ""}
@@ -183,7 +198,9 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="gender">Gender</label>
             <select
+              id="gender"
               {...register("gender", { required: "Gender is required" })}
               aria-invalid={errors.gender ? "true" : "false"}
               aria-describedby={errors.gender ? "gender-error" : undefined}
@@ -200,11 +217,13 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="nationality">Nationality</label>
             <input
+              id="nationality"
               {...register("nationality", {
                 required: "Nationality is required",
               })}
-              placeholder="Nationality"
+              placeholder="Please enter your nationality"
               aria-invalid={errors.nationality ? "true" : "false"}
               aria-describedby={
                 errors.nationality ? "nationality-error" : undefined
@@ -219,11 +238,13 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="occupation">Occupation</label>
             <input
+              id="occupation"
               {...register("occupation", {
                 required: "Occupation is required",
               })}
-              placeholder="Occupation"
+              placeholder="Please enter your occupation"
               aria-invalid={errors.occupation ? "true" : "false"}
               aria-describedby={
                 errors.occupation ? "occupation-error" : undefined
@@ -238,11 +259,13 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="addressLine1">Address Line 1</label>
             <input
+              id="addressLine1"
               {...register("addressLine1", {
                 required: "Address Line 1 is required",
               })}
-              placeholder="Address Line 1"
+              placeholder="Please enter your address line 1"
               aria-invalid={errors.addressLine1 ? "true" : "false"}
               aria-describedby={
                 errors.addressLine1 ? "addressLine1-error" : undefined
@@ -257,13 +280,20 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
-            <input {...register("addressLine2")} placeholder="Address Line 2" />
+            <label htmlFor="addressLine2">Address Line 2</label>
+            <input
+              id="addressLine2"
+              {...register("addressLine2")}
+              placeholder="Please enter your address line 2"
+            />
           </div>
 
           <div className="form-field">
+            <label htmlFor="city">City</label>
             <input
+              id="city"
               {...register("city", { required: "City is required" })}
-              placeholder="City"
+              placeholder="Please enter your city"
               aria-invalid={errors.city ? "true" : "false"}
               aria-describedby={errors.city ? "city-error" : undefined}
               className={errors.city ? "invalid" : ""}
@@ -276,9 +306,11 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="state">State</label>
             <input
+              id="state"
               {...register("state", { required: "State is required" })}
-              placeholder="State"
+              placeholder="Please enter your state"
               aria-invalid={errors.state ? "true" : "false"}
               aria-describedby={errors.state ? "state-error" : undefined}
               className={errors.state ? "invalid" : ""}
@@ -291,9 +323,11 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="country">Country</label>
             <input
+              id="country"
               {...register("country", { required: "Country is required" })}
-              placeholder="Country"
+              placeholder="Please enter your country"
               aria-invalid={errors.country ? "true" : "false"}
               aria-describedby={errors.country ? "country-error" : undefined}
               className={errors.country ? "invalid" : ""}
@@ -306,7 +340,9 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="pincode">Pincode</label>
             <input
+              id="pincode"
               {...register("pincode", {
                 required: "Pincode is required",
                 pattern: {
@@ -314,7 +350,7 @@ const UserKycRegistrationPage = () => {
                   message: "Pincode must be a 6-digit number",
                 },
               })}
-              placeholder="Pincode"
+              placeholder="Please enter your pincode"
               aria-invalid={errors.pincode ? "true" : "false"}
               aria-describedby={errors.pincode ? "pincode-error" : undefined}
               className={errors.pincode ? "invalid" : ""}
@@ -327,7 +363,9 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="documentType">Document Type</label>
             <select
+              id="documentType"
               {...register("documentType", {
                 required: "Document type is required",
               })}
@@ -349,11 +387,13 @@ const UserKycRegistrationPage = () => {
           </div>
 
           <div className="form-field">
+            <label htmlFor="documentNumber">Document Number</label>
             <input
+              id="documentNumber"
               {...register("documentNumber", {
                 required: "Document number is required",
               })}
-              placeholder="Document Number"
+              placeholder="Please enter your document number"
               aria-invalid={errors.documentNumber ? "true" : "false"}
               aria-describedby={
                 errors.documentNumber ? "documentNumber-error" : undefined

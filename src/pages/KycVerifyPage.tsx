@@ -22,55 +22,61 @@ const KycVerify: React.FC = () => {
   return (
     <div className="kyc-container">
       <div className="kyc-card">
-        <h2>KYC Verification</h2>
+        <h2 className="kyc-title">KYC Verification</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Customer ID</label>
+            <label htmlFor="customerId">Customer ID</label>
             <input
               type="number"
+              id="customerId"
               {...register("customerId", {
                 required: "Customer ID is required",
                 valueAsNumber: true,
               })}
+              placeholder="Please enter customer ID"
             />
             {errors.customerId && (
               <span className="error">{errors.customerId.message}</span>
             )}
           </div>
-
-          <div className="form-group">
-            <label>Document Type</label>
-            <select
-              {...register("documentType", {
-                required: "Document type is required",
-              })}>
-              <option value="">Select Document</option>
-              <option value="PAN">PAN</option>
-              <option value="AADHAR">Aadhar</option>
-              <option value="PASSPORT">Passport</option>
-            </select>
-            {errors.documentType && (
-              <span className="error">{errors.documentType.message}</span>
-            )}
+          <div className="document-container">
+            <div className="form-group">
+              <label htmlFor="documentType">Document Type</label>
+              <select
+                id="documentType"
+                {...register("documentType", {
+                  required: "Document type is required",
+                })}>
+                <option value="">Select Document</option>
+                <option value="PAN">PAN</option>
+                <option value="AADHAR">Aadhar</option>
+                <option value="PASSPORT">Passport</option>
+              </select>
+              {errors.documentType && (
+                <span className="error">{errors.documentType.message}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="documentNumber">Document Number</label>
+              <input
+                type="text"
+                id="documentNumber"
+                {...register("documentNumber", {
+                  required: "Document number is required",
+                })}
+                placeholder="Please enter document number"
+              />
+              {errors.documentNumber && (
+                <span className="error">{errors.documentNumber.message}</span>
+              )}
+            </div>
           </div>
-
-          <div className="form-group">
-            <label>Document Number</label>
-            <input
-              type="text"
-              {...register("documentNumber", {
-                required: "Document number is required",
-              })}
-            />
-            {errors.documentNumber && (
-              <span className="error">{errors.documentNumber.message}</span>
-            )}
+          <div className="button-container">
+            <button type="submit" className="submit-btn">
+              Verify
+            </button>
           </div>
-
-          <button type="submit" className="submit-btn">
-            Verify
-          </button>
         </form>
       </div>
     </div>
