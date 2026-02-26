@@ -44,8 +44,10 @@ export default function AuthPage() {
           username: data.username,
           password: data.password,
         });
-        if (res.data.token) localStorage.setItem("auth_token", res.data.token);
-        navigate("/");
+        if (res.data.token.access_token) {
+          localStorage.setItem("auth_token", res.data.token.access_token);
+          navigate("/");
+        }
       }
     } catch (err: unknown) {
       const error = err as AxiosError<{ message: string }>;

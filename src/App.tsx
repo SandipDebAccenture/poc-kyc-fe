@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Toaster } from "react-hot-toast";
 import Layout from "./Layout/Layout";
-import NotFoundPage from "./pages/NotFoundPage";
-import KycRegistrationPage from "./pages/KycRegistrationPage";
 import AuthPage from "./pages/AuthPage";
+import DashboardPage from "./pages/DashboardPage";
+import KycRegistrationPage from "./pages/KycRegistrationPage";
+import KycVerifyPage from "./pages/KycVerifyPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
 
         <Route path="/" element={<Layout />}>
-          <Route index element={<KycRegistrationPage />} />
+          <Route index element={<DashboardPage />} />
+          <Route path="kyc-registration" element={<KycRegistrationPage />} />
+          <Route path="kyc-verify" element={<KycVerifyPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
