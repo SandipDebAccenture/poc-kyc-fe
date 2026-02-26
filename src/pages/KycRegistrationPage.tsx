@@ -1,9 +1,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
 import { apiClient } from "../lib/axios";
 import "../styles/KycRegistrationPage.scss";
+
+const USER_VALUES = {
+  loginId: "Sandip Deb",
+  firstName: "Sandip",
+  lastName: "Deb",
+  dob: "2026-02-01",
+  email: "sandipdeb05+1@gmail.com",
+  password: "abcdef",
+  mobile: "8404069982",
+  gender: "Male",
+  nationality: "Indian",
+  occupation: "SDE",
+  addressLine1: "BLR",
+  addressLine2: "",
+  city: "BLR",
+  state: "KR",
+  country: "India",
+  pincode: "560012",
+  documentType: "PAN",
+  documentNumber: "54321",
+};
 
 interface UserFormData {
   firstName: string;
@@ -27,6 +49,7 @@ interface UserFormData {
 }
 
 const UserKycRegistrationPage = () => {
+  const navigate = useNavigate();
   const userInfo: string | null = localStorage.getItem("user_info");
   const username: string = userInfo ? JSON.parse(userInfo).username : "User";
 
@@ -36,7 +59,7 @@ const UserKycRegistrationPage = () => {
     formState: { errors },
     reset,
   } = useForm<UserFormData>({
-    defaultValues: { loginId: username },
+    defaultValues: { ...USER_VALUES, loginId: username },
   });
 
   const [loading, setLoading] = useState(false);
@@ -45,9 +68,11 @@ const UserKycRegistrationPage = () => {
     setLoading(true);
     try {
       const res = await apiClient.post("api/onboarding", data);
+      localStorage.setItem("onboarding_info", JSON.stringify(res.data));
       console.log("Onboarding response:", res); // FIXME: Remove
       toast.success("Registration submitted successfully");
       reset();
+      navigate("/");
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
       const msg =
