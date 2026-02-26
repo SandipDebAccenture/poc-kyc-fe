@@ -12,8 +12,12 @@ const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const userInfo: string | null = localStorage.getItem("user_info");
   const userId: string = userInfo ? JSON.parse(userInfo).userId : null;
+  const onboardingInfo: string | null = localStorage.getItem("onboarding_info");
+  const customerId: number | null = onboardingInfo
+    ? JSON.parse(onboardingInfo).customerId
+    : null;
 
-  const isKycVerifyDisabled = !userId;
+  const isKycVerifyDisabled = !userId && !customerId;
 
   const handleLogout = () => {
     localStorage.clear();

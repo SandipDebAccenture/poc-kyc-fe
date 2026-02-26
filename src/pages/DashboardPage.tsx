@@ -26,6 +26,8 @@ const Dashboard = () => {
     ? JSON.parse(onboardingInfo).customerId
     : null;
 
+  const isKycVerifyDisabled = !userId && !customerId;
+
   useEffect(() => {
     if (!customerId) return;
 
@@ -97,7 +99,7 @@ const Dashboard = () => {
           <button
             className="btn secondary"
             onClick={() => handleNavigate("/kyc-verify")}
-            disabled={!userId}>
+            disabled={isKycVerifyDisabled}>
             Verify KYC
           </button>
         </div>

@@ -13,12 +13,22 @@ type KycFormValues = {
 
 const KycVerify: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const customerInfo: string | null = localStorage.getItem("onboarding_info");
+  const customerId: number | null = customerInfo
+    ? JSON.parse(customerInfo).customerId
+    : null;
+
+  const isCustomerIdDisabled = !!customerId;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<KycFormValues>();
+  } = useForm<KycFormValues>({
+    defaultValues: {
+      customerId: customerId || undefined,
+    },
+  });
 
   const onSubmit = async (data: KycFormValues) => {
     setLoading(true);
@@ -56,6 +66,7 @@ const KycVerify: React.FC = () => {
                 valueAsNumber: true,
               })}
               placeholder="Please enter customer ID"
+              disabled={isCustomerIdDisabled}
             />
             {errors.customerId && (
               <span className="error">{errors.customerId.message}</span>
