@@ -1,0 +1,91 @@
+$primary: #333;
+$secondary: #555;
+$background: #f4f4f4;
+
+.kyc-container {
+  min-height: 100vh;
+  background: $background;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.kyc-card {
+  padding: 20px;
+  width: 100%;
+  .kyc-title {
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 10px;
+  }
+  .document-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    margin-bottom: 0.1rem;
+    font-size: 0.7rem;
+    color: $secondary;
+  }
+
+  input,
+  select {
+    padding: 0.6rem;
+    border: 1px solid $secondary;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border 0.2s ease;
+    &:focus {
+      border-color: $primary;
+    }
+  }
+}
+
+.error {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: #d32f2f;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  width: 25%;
+  padding: 0.7rem;
+  background: $primary;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover {
+    background: $secondary;
+  }
+}
+
+@media (max-width: 900px) {
+  .kyc-container {
+    padding: 20px;
+    .document-container {
+      grid-template-columns: 1fr;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}
