@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { apiClient } from "../lib/axios";
 import "../styles/KycVerifyPage.scss";
+import toast from "react-hot-toast";
+import type { AxiosError } from "axios";
 
 type KycFormValues = {
   customerId: number;
@@ -9,14 +12,32 @@ type KycFormValues = {
 };
 
 const KycVerify: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<KycFormValues>();
 
-  const onSubmit = (data: KycFormValues) => {
-    console.log("KYC Payload:", data); // FIXME: Remove
+  const onSubmit = async (data: KycFormValues) => {
+    setLoading(true);
+    try {
+      const response = await apiClient.post("/api/kyc/verify", data);
+      toast.success(response.data.message || "KYC verified successfully", {
+        duration: 3000,
+      });
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError<{ message: string }>;
+      toast.error(
+        axiosError.response?.data?.message || "Failed to verify KYC",
+        {
+          duration: 3000,
+        },
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,8 +94,8 @@ const KycVerify: React.FC = () => {
             </div>
           </div>
           <div className="button-container">
-            <button type="submit" className="submit-btn">
-              Verify
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? "Verifying..." : "Verify"}
             </button>
           </div>
         </form>
