@@ -27,12 +27,17 @@ interface UserFormData {
 }
 
 const UserKycRegistrationPage = () => {
+  const userInfo: string | null = localStorage.getItem("user_info");
+  const username: string = userInfo ? JSON.parse(userInfo).username : "User";
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<UserFormData>();
+  } = useForm<UserFormData>({
+    defaultValues: { loginId: username },
+  });
 
   const [loading, setLoading] = useState(false);
 
@@ -106,6 +111,7 @@ const UserKycRegistrationPage = () => {
               aria-invalid={errors.loginId ? "true" : "false"}
               aria-describedby={errors.loginId ? "loginId-error" : undefined}
               className={errors.loginId ? "invalid" : ""}
+              disabled
             />
             {errors.loginId && (
               <span id="loginId-error" className="error">
