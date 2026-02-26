@@ -19,7 +19,7 @@ const UserKycRegistrationForm = () => {
   const onSubmit = async (data: UserFormData) => {
     setLoading(true);
     try {
-      const res = await apiClient.post("/api/onboarding", data);
+      const res = await apiClient.post("api/onboarding", data);
       console.log("Onboarding response:", res); // FIXME: Remove
       toast.success("Registration submitted successfully");
       reset();
