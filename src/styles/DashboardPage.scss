@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $primary: #333;
 $secondary: #555;
 $success: #16a34a;
@@ -65,14 +67,14 @@ $neutral: #999;
     background: $primary;
     color: white;
     &:hover {
-      background: color.scale($primary, 5%);
+      background: color.scale($primary, $lightness: 5%);
     }
   }
   &.secondary {
     background: $secondary;
     color: white;
     &:hover {
-      background: color.scale($secondary, 5%);
+      background: color.scale($secondary, $lightness: 5%);
     }
     &:disabled {
       background: #ccc;
