@@ -8,12 +8,14 @@ const statusColors: Record<string, string> = {
   "NOT STARTED": "neutral",
 };
 
-const username: string = "John Doe";
 const onboardingStatus: string = "NOT STARTED";
 const kycStatus: string = "NOT STARTED";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const userInfo: string | null = localStorage.getItem("user_info");
+  const username: string = userInfo ? JSON.parse(userInfo).username : "User";
+  const userId: string = userInfo ? JSON.parse(userInfo).userId : null;
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -51,7 +53,8 @@ const Dashboard = () => {
 
           <button
             className="btn secondary"
-            onClick={() => handleNavigate("/kyc-verify")}>
+            onClick={() => handleNavigate("/kyc-verify")}
+            disabled={!userId}>
             Verify KYC
           </button>
         </div>

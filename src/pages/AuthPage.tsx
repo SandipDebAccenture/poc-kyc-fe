@@ -22,6 +22,7 @@ export default function AuthPage() {
   const onSubmit = async (data: any) => {
     setLoading(true);
     setError("");
+    localStorage.clear();
 
     try {
       if (isSignUp) {
@@ -45,6 +46,11 @@ export default function AuthPage() {
           password: data.password,
         });
         if (res.data.token.access_token) {
+          const userInfo = JSON.stringify({
+            username: res.data.customerName,
+            userId: res.data.userId,
+          });
+          localStorage.setItem("user_info", userInfo);
           localStorage.setItem("auth_token", res.data.token.access_token);
           navigate("/");
         }
