@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import "../styles/Layout.scss";
 
 const sidebarLinks = [
@@ -9,15 +9,25 @@ const sidebarLinks = [
 ];
 
 const Sidebar: React.FC = () => {
+  const navigate = useNavigate();
   const userInfo: string | null = localStorage.getItem("user_info");
   const userId: string = userInfo ? JSON.parse(userInfo).userId : null;
+  const onboardingInfo: string | null = localStorage.getItem("onboarding_info");
+  const customerId: number | null = onboardingInfo
+    ? JSON.parse(onboardingInfo).customerId
+    : null;
 
-  const isKycVerifyDisabled = !userId;
+  const isKycVerifyDisabled = !userId && !customerId;
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/auth");
+  };
 
   return (
     <aside className="app-sidebar">
-      <nav>
-        <ul>
+      <nav className="sidebar-nav">
+        <ul className="nav-list">
           {sidebarLinks.map((link) => {
             const isDisabled =
               link.path === "/kyc-verify" && isKycVerifyDisabled;
@@ -39,6 +49,9 @@ const Sidebar: React.FC = () => {
             );
           })}
         </ul>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </nav>
     </aside>
   );

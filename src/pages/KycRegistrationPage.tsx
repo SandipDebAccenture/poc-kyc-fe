@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
 import { apiClient } from "../lib/axios";
 import "../styles/KycRegistrationPage.scss";
+import { USER_KYC_REGISTRATION_VALUES } from "../constants/formInputs";
 
 interface UserFormData {
   firstName: string;
@@ -27,12 +29,18 @@ interface UserFormData {
 }
 
 const UserKycRegistrationPage = () => {
+  const navigate = useNavigate();
+  const userInfo: string | null = localStorage.getItem("user_info");
+  const username: string = userInfo ? JSON.parse(userInfo).username : "User";
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<UserFormData>();
+  } = useForm<UserFormData>({
+    defaultValues: { ...USER_KYC_REGISTRATION_VALUES, loginId: username },
+  });
 
   const [loading, setLoading] = useState(false);
 
@@ -40,9 +48,11 @@ const UserKycRegistrationPage = () => {
     setLoading(true);
     try {
       const res = await apiClient.post("api/onboarding", data);
+      localStorage.setItem("onboarding_info", JSON.stringify(res.data));
       console.log("Onboarding response:", res); // FIXME: Remove
       toast.success("Registration submitted successfully");
       reset();
+      navigate("/");
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
       const msg =
@@ -106,6 +116,7 @@ const UserKycRegistrationPage = () => {
               aria-invalid={errors.loginId ? "true" : "false"}
               aria-describedby={errors.loginId ? "loginId-error" : undefined}
               className={errors.loginId ? "invalid" : ""}
+              disabled
             />
             {errors.loginId && (
               <span id="loginId-error" className="error">
