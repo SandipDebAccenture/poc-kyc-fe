@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router";
 import "../styles/Layout.scss";
+import { useAuth } from "../context/AuthContext";
 
 const sidebarLinks = [
   { name: "Dashboard", path: "/" },
@@ -10,6 +11,7 @@ const sidebarLinks = [
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const userInfo: string | null = localStorage.getItem("user_info");
   const userId: string = userInfo ? JSON.parse(userInfo).userId : null;
   const onboardingInfo: string | null = localStorage.getItem("onboarding_info");
@@ -21,6 +23,7 @@ const Sidebar: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    logout();
     navigate("/auth");
   };
 
