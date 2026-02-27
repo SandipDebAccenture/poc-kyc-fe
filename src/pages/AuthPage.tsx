@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { apiClient } from "../lib/axios";
 import "../styles/AuthPage.scss";
+import { USER_AUTH_VALUES } from "../constants/formInputs";
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -13,7 +14,9 @@ export default function AuthPage() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: { ...USER_AUTH_VALUES },
+  });
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

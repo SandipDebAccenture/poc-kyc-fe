@@ -5,27 +5,7 @@ import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
 import { apiClient } from "../lib/axios";
 import "../styles/KycRegistrationPage.scss";
-
-const USER_VALUES = {
-  loginId: "Sandip Deb",
-  firstName: "Sandip",
-  lastName: "Deb",
-  dob: "2026-02-01",
-  email: "sandipdeb05+1@gmail.com",
-  password: "abcdef",
-  mobile: "8404069982",
-  gender: "Male",
-  nationality: "Indian",
-  occupation: "SDE",
-  addressLine1: "BLR",
-  addressLine2: "",
-  city: "BLR",
-  state: "KR",
-  country: "India",
-  pincode: "560012",
-  documentType: "PAN",
-  documentNumber: "54321",
-};
+import { USER_KYC_REGISTRATION_VALUES } from "../constants/formInputs";
 
 interface UserFormData {
   firstName: string;
@@ -59,7 +39,7 @@ const UserKycRegistrationPage = () => {
     formState: { errors },
     reset,
   } = useForm<UserFormData>({
-    defaultValues: { ...USER_VALUES, loginId: username },
+    defaultValues: { ...USER_KYC_REGISTRATION_VALUES, loginId: username },
   });
 
   const [loading, setLoading] = useState(false);

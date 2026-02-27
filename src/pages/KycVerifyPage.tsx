@@ -4,6 +4,7 @@ import { apiClient } from "../lib/axios";
 import "../styles/KycVerifyPage.scss";
 import toast from "react-hot-toast";
 import type { AxiosError } from "axios";
+import { USER_KYC_VERIFICATION_VALUES } from "../constants/formInputs";
 
 type KycFormValues = {
   customerId: number;
@@ -26,6 +27,7 @@ const KycVerify: React.FC = () => {
     formState: { errors },
   } = useForm<KycFormValues>({
     defaultValues: {
+      ...USER_KYC_VERIFICATION_VALUES,
       customerId: customerId || undefined,
     },
   });
