@@ -27,7 +27,7 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="app-sidebar">
       <nav className="sidebar-nav">
-        <ul>
+        <ul className="nav-list">
           {sidebarLinks.map((link) => {
             const isDisabled =
               link.path === "/kyc-verify" && isKycVerifyDisabled;
@@ -49,7 +49,7 @@ const Sidebar: React.FC = () => {
             );
           })}
         </ul>
-        <button className="btn logout-btn" onClick={handleLogout}>
+        <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
       </nav>

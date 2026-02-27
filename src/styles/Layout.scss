@@ -17,6 +17,12 @@
   box-sizing: border-box;
 }
 
+.nav-list {
+  border-bottom: 1px solid #efefef;
+  padding: 20px 0;
+  margin-bottom: 30px !important;
+}
+
 .app-sidebar ul {
   list-style: none;
   padding: 0;
@@ -48,8 +54,8 @@
 }
 
 .app-sidebar a:hover {
-  background-color: #eef6ff;
-  color: #0b66c2;
+  background-color: #999;
+  color: #f2f2f2;
   transform: translateY(-1px);
 }
 
@@ -85,4 +91,29 @@
     width: 200px;
     padding: 8px;
   }
+}
+
+.logout-btn {
+  background: transparent;
+  color: #ff3c3c;
+  padding: 10px 15px;
+  border: 1px solid #888;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.logout-btn:hover {
+  background-color: #999;
+  color: #f2f2f2;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
 }
